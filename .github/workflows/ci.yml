@@ -70,7 +70,7 @@ jobs:
 
       - name: Trigger Inngest CI Workflow
         run: |
-          curl -X POST https://inn.gset.io/e/${{ secrets.INNGEST_EVENT_KEY }} \
+          curl -X POST https://api.inngest.com/e/${{ secrets.INNGEST_EVENT_KEY }} \
             -H "Content-Type: application/json" \
             -d '{
               "name": "ci/workflow.triggered",
