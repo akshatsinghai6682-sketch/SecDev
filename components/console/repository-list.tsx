@@ -135,7 +135,7 @@ export function RepositoryList({
           Connect your GitHub account
         </p>
         <p className="text-xs text-gray-500 dark:text-zinc-500 mb-4 max-w-xs">
-          Connect GitHub to fetch your repositories and enable one-click deployments.
+          Connect GitHub to access your repositories and deploy both public and private projects from your account.
         </p>
         <button
           type="button"
@@ -159,11 +159,10 @@ export function RepositoryList({
       {/* Deploy notification */}
       {deployMsg && (
         <div
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm border ${
-            deployMsg.ok
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm border ${deployMsg.ok
               ? "bg-green-50 dark:bg-green-500/10 border-green-200 dark:border-green-500/20 text-green-700 dark:text-green-400"
               : "bg-red-50 dark:bg-red-500/10 border-red-200 dark:border-red-500/20 text-red-700 dark:text-red-400"
-          }`}
+            }`}
         >
           {deployMsg.msg}
           {deployMsg.url && (
@@ -197,22 +196,20 @@ export function RepositoryList({
             <div className="flex items-center gap-1 p-1 bg-gray-100 dark:bg-zinc-800 rounded-lg">
               <button
                 onClick={() => setView("table")}
-                className={`p-1.5 rounded-md transition-colors ${
-                  view === "table"
+                className={`p-1.5 rounded-md transition-colors ${view === "table"
                     ? "bg-white dark:bg-zinc-700 text-gray-900 dark:text-white shadow-sm"
                     : "text-gray-400 dark:text-zinc-500 hover:text-gray-700 dark:hover:text-zinc-300"
-                }`}
+                  }`}
                 title="Table view"
               >
                 <List className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setView("grid")}
-                className={`p-1.5 rounded-md transition-colors ${
-                  view === "grid"
+                className={`p-1.5 rounded-md transition-colors ${view === "grid"
                     ? "bg-white dark:bg-zinc-700 text-gray-900 dark:text-white shadow-sm"
                     : "text-gray-400 dark:text-zinc-500 hover:text-gray-700 dark:hover:text-zinc-300"
-                }`}
+                  }`}
                 title="Grid view"
               >
                 <LayoutGrid className="w-4 h-4" />
