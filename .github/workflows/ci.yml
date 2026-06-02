@@ -3,9 +3,18 @@ name: CI
 on:
   push:
     branches:
-      - main
-      - master
+      - prod
+    paths-ignore:
+      - 'README.md'
+      - '*.md'
+      - 'docs/**'
   pull_request:
+    branches:
+      - prod
+    paths-ignore:
+      - 'README.md'
+      - '*.md'
+      - 'docs/**'
 
 permissions:
   contents: read
@@ -58,3 +67,15 @@ jobs:
 
       - name: Run build
         run: npm run build
+
+      - name: Trigger Inngest CI Workflow
+        run: |
+          curl -X POST https://inn.gset.io/e/${{ secrets.INNGEST_EVENT_KEY }} \
+            -H "Content-Type: application/json" \
+            -d '{
+              "name": "ci/workflow.triggered",
+              "data": {
+                "ref": "${{ github.ref }}",
+                "sha": "${{ github.sha }}"
+              }
+            }'
