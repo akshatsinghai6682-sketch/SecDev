@@ -16,7 +16,17 @@ const handleCiWorkflow = inngest.createFunction(
 
     await step.run("execute-safely", async () => {
       console.log(`Processing build for Ref: ${ref}, SHA: ${sha}`);
-      return { status: "processed" };
+      
+      // Send the event to start the actual test suites in the app
+      await inngest.send({
+        name: "test/suite.run",
+        data: {
+          runId: `ci-${sha.slice(0, 7)}`,
+          sandboxId: "production-ci-environment",
+        },
+      });
+
+      return { status: "test_suite_dispatched" };
     });
   }
 );
